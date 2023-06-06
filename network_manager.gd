@@ -18,7 +18,7 @@ func create_server():
 		func(new_peer_id):
 			print(str(multiplayer.get_unique_id()), ": client connected")
 			await get_tree().create_timer(1).timeout
-			add_player(new_peer_id)
+			#add_player(new_peer_id)
 			rpc("add_newly_connected_player", new_peer_id)
 			rpc_id(new_peer_id, "add_previously_connected_players", peer_ids)
 	)
@@ -31,7 +31,7 @@ func create_server():
 			#print("peer ids :", peer_ids)
 			#print("players: ", players)
 	)
-	
+
 func create_client():
 	network.create_client(ADDRESS, PORT)
 	multiplayer.multiplayer_peer = network
@@ -56,8 +56,8 @@ func add_player(peer_id):
 func remove_player(peer_id):
 	peer_ids.erase(peer_id)
 	players[peer_id].queue_free()
-	
-@rpc
+
+@rpc("call_local")
 func add_newly_connected_player(new_peer_id):
 	add_player(new_peer_id)
 	print(str(multiplayer.get_unique_id()), ": added newly connected player: ", new_peer_id)
