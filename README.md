@@ -1,14 +1,14 @@
-# /gd_networkmanager/
+#/gd_networkmanager/
 	gdscript multiplayer lobby with chat and asset sincronization for Godot game-engine WIP
 	server ran on host player side, not currently a standalone server.
 
 
-# networkmanager.gd
+#networkmanager.gd
 	starts godot multiplayer API
 	sets ip/port/max peers
 
-# current functionality
-   # funcs
+#current functionality
+   #funcs
 		create_server()
       host creates/starts server and listens to connected/disconnected signals
       host creates player asset for himself (player 1)
@@ -29,7 +29,7 @@
 		@rpc_id
 		  add_previously_connected_player()
 
-  # signals
+  #signals
 		on connected signal
 			generates unique id(peer id) from signal, adds peer_id to peer_id array/list.
 			generates player object(scene) and assigns it to a dictionary.
@@ -37,7 +37,7 @@
 			host uses @RPC_ID to add all previously existing players in the server to the connected peers' instance.(newly connected peer)
 		on disconnected signal
 			host uses @RPC("call local") to remove player object and peer_id localy and in all peers.
-  # lobby/chat.gd
+  #lobby/chat.gd
       lobby calls either create_server() or create_client()
       lobby starts chat
 
